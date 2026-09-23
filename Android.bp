@@ -51,6 +51,13 @@ cc_defaults {
     extra_export_include_dirs_deps: [
         "src/pcre2.h.generic",
     ],
+    extra_include_dir_deps: [
+        "src/pcre2_chartables.c.dist",
+        "src/pcre2_jit_match.c",
+        "src/pcre2_jit_misc.c",
+        "src/pcre2_printint.c",
+        "src/pcre2_ucptables.c",
+    ],
 }
 
 //
