@@ -7,21 +7,21 @@ description: "The PCRE library is a set of functions that implement regular expr
 third_party {
   license_type: NOTICE
   security {
-    tag: "NVD-CPE2.3:cpe:/a:pcre:pcre2:2-10.46"
     tag: "android:on_device_usage"
     tag: "android:privilege_level:privileged"
     tag: "android:untrusted_input"
+    tag: "NVD-CPE2.3:cpe:/a:pcre:pcre2:2-10.49"
   }
   last_upgrade_date {
-    year: 2025
-    month: 8
-    day: 27
+    year: 2026
+    month: 10
+    day: 8
   }
   homepage: "https://www.pcre.org/"
   identifier {
     type: "Git"
     value: "https://github.com/PCRE2Project/pcre2/"
-    version: "b2bd4254b379b9d7dc9a3dda060a7e27009ccdff"
-    closest_version: "pcre2-10.46"
+    version: "6f9d7c1373262c541324a16a358785b33ef116cf"
+    closest_version: "pcre2-10.49"
   }
 }

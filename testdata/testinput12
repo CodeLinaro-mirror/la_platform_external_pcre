@@ -250,6 +250,10 @@
 
 /abc/utf,never_utf
 
+/(*UCP)abc/never_ucp
+
+/abc/ucp,never_ucp
+
 /A\x{391}\x{10427}\x{ff3a}\x{1fb0}/IBi,utf
 
 /A\x{391}\x{10427}\x{ff3a}\x{1fb0}/IB,utf
@@ -360,7 +364,11 @@
 /\pP/ucp
     \x{7fffffff}
 
-# A special extra option allows excaped surrogate code points in 32-bit mode,
+/\p{  Aሴ}/utf
+
+/\p{BC: Aሴ}/utf
+
+# A special extra option allows escaped surrogate code points in 32-bit mode,
 # but subjects containing them must not be UTF-checked. These patterns give
 # errors in 16-bit mode.
 
@@ -398,6 +406,10 @@
 /(?(n/utf
 
 /(?(á/utf
+
+/^\cģ/utf
+
+/(?'٠ABC'...)/utf
 
 # Invalid UTF-16/32 tests.
 
@@ -485,6 +497,25 @@
 
 /(..)(*scs:(1)ab$)/match_invalid_utf
     ab\x{df00}cde         
+
+# Backward scans must not enter the invalid prefix before check_subject.
+
+/(?<=a{1,2})X/utf,match_invalid_utf
+\= Expect no match
+    \x{dc00}X
+
+/\X\X/utf,match_invalid_utf
+\= Expect no match
+    \x{dc00}\x{1f1e6}\x{1f1e7}
+
+/(?<=(.))/utf,match_invalid_utf
+    x\x{d800}
+    \x{10000}\x{dc00}
+
+/\b./utf,match_invalid_utf
+    \x{10000}s
+    \x{d800}s
+    \x{dc00}s
 
 # ---------------------------------------------------- 
 
