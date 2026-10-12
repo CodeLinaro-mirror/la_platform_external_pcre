@@ -3,9 +3,12 @@
 build/
 build-*/
 
+pages/
+
 *.a
 *.gcda
 *.gcno
+*.profraw
 *.lo
 *.la
 *.pc
@@ -33,6 +36,7 @@ config.guess
 config.log
 config.status
 config.sub
+config.lt
 configure
 depcomp
 install-sh
@@ -77,9 +81,19 @@ testtry
 testtry2
 testtrygrep
 testSinput
+testSoutput
 testbtables
 testsaved1
 testsaved2
+testoutput8
+testoutput8-jit
+testoutput8-dfa
+testoutput16
+testoutput16-jit
+testoutput16-dfa
+testoutput32
+testoutput32-jit
+testoutput32-dfa
 
 m4/libtool.m4
 m4/ltoptions.m4
@@ -93,13 +107,24 @@ src/config.h
 src/config.h.in
 src/pcre2.h
 src/pcre2_chartables.c
+src/libpcre2-8.sym
+src/libpcre2-16.sym
+src/libpcre2-32.sym
+src/libpcre2-posix.sym
 src/stamp-h1
 
 /bazel-*
 *.bazel.lock
 
+zig-pkg/
 zig-out/
 zig-cache/
 .zig-cache/
+
+# Folders that may be used by individual developers, without appearing in git
+# status output.
+.vscode/
+.devcontainer/
+.personal/
 
 # End

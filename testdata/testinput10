@@ -353,6 +353,10 @@
 
 /abc/utf,never_utf
 
+/(*UCP)abc/never_ucp
+
+/abc/ucp,never_ucp
+
 /A\x{391}\x{10427}\x{ff3a}\x{1fb0}/IBi,utf
 
 /A\x{391}\x{10427}\x{ff3a}\x{1fb0}/IB,utf
@@ -455,6 +459,10 @@
 \= Expect no match
     123     
 
+/\p{  Aሴ}/utf
+
+/\p{BC: Aሴ}/utf
+
 /(*:*++++++++++++''''''''''''''''''''+''+++'+++x+++++++++++++++++++++++++++++++++++(++++++++++++++++++++:++++++%++:''''''''''''''''''''''''+++++++++++++++++++++++++++++++++++++++++++++++++++++-++++++++k+++++++''''+++'+++++++++++++++++++++++''''++++++++++++':ƿ)/utf
 
 /[\s[:^ascii:]]/B,ucp
@@ -493,6 +501,10 @@
 /(?(n/utf
 
 /(?(á/utf
+
+/^\cģ/utf
+
+/(?'٠ABC'...)/utf
 
 # Invalid UTF-8 tests
 
@@ -572,6 +584,24 @@
 \= Expect no match
     AAA\x80BXYZ 
     AAA\x80BBXYZ 
+
+# Backward scans must not enter the invalid prefix before check_subject.
+
+/(?<=a{1,2})X/utf,match_invalid_utf
+\= Expect no match
+    \x80X
+
+/\X\X/utf,match_invalid_utf
+\= Expect no match
+    \x80\x{1f1e6}\x{1f1e7}
+
+/(?<=(.))/utf,match_invalid_utf
+    x\x80
+    \x{10000}\x80
+
+/\b./utf,match_invalid_utf
+    \x{10000}s
+    \xf0s
 
 # -------------------------------------
 
